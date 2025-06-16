@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Analyse Ergebnisse</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 80%; max-width: 800px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px 15px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tbody tr:nth-child(odd) { background-color: #fafafa; }
+        .coefficients, .predictions { max-width: 600px; word-wrap: break-word; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Analyse Ergebnisse</h1>
+    <table>
+        <tr><th>Parameter</th><th>Wert</th></tr>
+        <tr><td>Mean Squared Error (MSE)</td><td>{{ mse }}</td></tr>
+        <tr><td>Root Mean Squared Error (RMSE)</td><td>{{ rmse }}</td></tr>
+        <tr>
+            <td>Koeffizienten (Steigungen)</td>
+            <td class="coefficients">
+                <ul>
+                    {% for coef in coefficients %}
+                    <li>{{ coef }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr><td>Intercept (Achsenabschnitt)</td><td>{{ intercept }}</td></tr>
+        <tr>
+            <td>Beispiel-Vorhersagen</td>
+            <td class="predictions">
+                <ul>
+                {% for pred in predictions %}
+                    <li>{{ "%.2f"|format(pred) }} €</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
